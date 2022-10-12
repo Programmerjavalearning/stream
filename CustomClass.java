@@ -1,5 +1,7 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 class Course{
     private String name;
@@ -105,6 +107,21 @@ public class CustomClass {
                 .anyMatch(reviewScoreInfA90Predicate)); //false
 
 
+        Comparator comparingNumberOfStudents = Comparator.comparing(Course::getNoOfStudents);
+        Comparator comparingNumberOfStudentsDecreasing = Comparator.comparing(Course::getNoOfStudents).reversed();
 
+        System.out.println(courses.stream().sorted(comparingNumberOfStudents).collect(Collectors.toList()));
+
+        // [AWS.14000:92, Spring Boot.18000:95, Spring.20000:98, Kubernetes.20000:91, Azure.21000:99, Docker.21000:92, API.22000:97, FullStack.25000:96]
+
+        System.out.println(courses.stream().sorted(comparingNumberOfStudentsDecreasing).collect(Collectors.toList()));
+
+        //[FullStack.25000:96, API.22000:97, Azure.21000:99, Docker.21000:92, Spring.20000:98, Kubernetes.20000:91, Spring Boot.18000:95, AWS.14000:92]
+
+        Comparator comparingNumberOfStudentsAndReviewScore = Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore);
+
+        System.out.println(courses.stream().sorted(comparingNumberOfStudentsAndReviewScore).collect(Collectors.toList()));
+
+        //[AWS.14000:92, Spring Boot.18000:95, Kubernetes.20000:91, Spring.20000:98, Docker.21000:92, Azure.21000:99, API.22000:97, FullStack.25000:96]
     }
 }
