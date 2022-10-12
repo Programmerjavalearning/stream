@@ -123,5 +123,52 @@ public class CustomClass {
         System.out.println(courses.stream().sorted(comparingNumberOfStudentsAndReviewScore).collect(Collectors.toList()));
 
         //[AWS.14000:92, Spring Boot.18000:95, Kubernetes.20000:91, Spring.20000:98, Docker.21000:92, Azure.21000:99, API.22000:97, FullStack.25000:96]
+
+
+        System.out.println(courses.stream()
+                .sorted(comparingNumberOfStudentsAndReviewScore)
+                .limit(5)
+                .collect(Collectors.toList())
+
+        );
+//AWS.14000:92, Spring Boot.18000:95, Kubernetes.20000:91, Spring.20000:98, Docker.21000:92]
+        System.out.println(courses.stream()
+                .sorted(comparingNumberOfStudentsAndReviewScore)
+                .skip(2)
+                .collect(Collectors.toList())
+
+        );
+//[Kubernetes.20000:91, Spring.20000:98, Docker.21000:92, Azure.21000:99, API.22000:97, FullStack.25000:96]
+
+
+        System.out.println(courses.stream()
+                .sorted(comparingNumberOfStudentsAndReviewScore)
+                .skip(2)
+                .limit(3)
+                .collect(Collectors.toList())
+
+        );
+
+        //[Kubernetes.20000:91, Spring.20000:98, Docker.21000:92]
+
+
+        System.out.println(courses);
+        //[Spring.20000:98, Spring Boot.18000:95, API.22000:97, FullStack.25000:96, AWS.14000:92, Azure.21000:99, Docker.21000:92, Kubernetes.20000:91]
+
+
+        System.out.println(
+        courses.stream()
+                .takeWhile(course -> course.getReviewScore() >=95)
+                .collect(Collectors.toList()));
+        //[Spring.20000:98, Spring Boot.18000:95, API.22000:97, FullStack.25000:96]
+
+
+        System.out.println(
+                courses.stream()
+                        .dropWhile(course -> course.getReviewScore() >=95)
+                        .collect(Collectors.toList()));
+        //[AWS.14000:92, Azure.21000:99, Docker.21000:92, Kubernetes.20000:91]
+
+
     }
 }
