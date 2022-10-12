@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.function.Predicate;
 
 class Course{
     private String name;
@@ -66,6 +67,43 @@ public class CustomClass {
                 new Course("Docker", "Cloud", 92,21000),
                 new Course("Kubernetes", "Cloud", 91,20000)
         );
+
+
+
+        //allMatch, noneMatch , anyMatch
+        Predicate<Course> reviewScoreSuppA95Predicate = course -> course.getReviewScore() > 95;
+
+        Predicate<Course> reviewScoreInfA95Predicate = course -> course.getReviewScore() > 95;
+
+        Predicate<Course> reviewScoreSuppA90Predicate = course -> course.getReviewScore() > 90;
+
+        Predicate<Course> reviewScoreInfA90Predicate = course -> course.getReviewScore() < 90;
+
+
+        System.out.println(courses.stream()
+                .allMatch(reviewScoreSuppA95Predicate)); // false
+
+
+        System.out.println(courses.stream()
+                .allMatch(reviewScoreSuppA90Predicate)); //true
+
+
+        System.out.println(courses.stream()
+                .noneMatch(reviewScoreInfA90Predicate)); //true
+
+
+        System.out.println(courses.stream()
+                .noneMatch(reviewScoreSuppA95Predicate)); //false
+
+        System.out.println(courses.stream()
+                .anyMatch(reviewScoreSuppA95Predicate)); //true
+
+        System.out.println(courses.stream()
+                .anyMatch(reviewScoreInfA95Predicate)); //true
+
+        System.out.println(courses.stream()
+                .anyMatch(reviewScoreInfA90Predicate)); //false
+
 
 
     }
