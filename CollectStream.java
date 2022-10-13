@@ -53,4 +53,13 @@ public class CollectStream {
                 .collect(Collectors.toList());
 
     }
+    
+    
+    private static List<Integer> cubeNumbersList(List<Integer> numbers) {
+
+        return numbers.stream()
+                .map(number -> number * number * number )
+                .collect(Collectors.toList());
+
+    }
 }
