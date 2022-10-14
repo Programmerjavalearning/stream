@@ -209,6 +209,45 @@ public class CustomClass {
         //Optional[Spring.20000:98]
 
 
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .sum());
+    // Le total 88000
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .average());
+// la moyenne 22000
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .count());
+
+        // Le nombre 4
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .max());
+
+        // la max 25000
+
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .min());
+
+        // min
+
 
     }
 }
