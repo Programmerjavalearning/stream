@@ -249,5 +249,46 @@ public class CustomClass {
         // min
 
 
+        //Group pas catégirie dans une hashmap
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory))
+        );
+    //    {Cloud=[AWS.14000:92, Azure.21000:99, Docker.21000:92, Kubernetes.20000:91], FullStack=[FullStack.25000:96], Framework=[
+     //       Spring .20000:98, Spring Boot.18000:95, API.22000:97]}
+
+
+
+//Compte le nombre de clé
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory, Collectors.counting()))
+        );
+
+// On recupere le max de chaque catégorie
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory,
+                                Collectors.maxBy(Comparator.comparing(Course::getReviewScore))))
+        );
+//{Cloud=Optional[Azure.21000:99], FullStack=Optional[FullStack.25000:96], Framework=Optional[Spring.20000:98]}
+
+
+
+
+
+// On recupere que le nom dans la hashmap pour les keys
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory,
+                                Collectors.mapping(Course::getName, Collectors.toList())))
+        );
+
+        //{Cloud=[AWS, Azure, Docker, Kubernetes], FullStack=[FullStack], Framework=[Spring, Spring Boot, API]}
+
+
+
+
+
     }
 }
