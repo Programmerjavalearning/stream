@@ -75,7 +75,7 @@ public class CustomClass {
         //allMatch, noneMatch , anyMatch
         Predicate<Course> reviewScoreSuppA95Predicate = course -> course.getReviewScore() > 95;
 
-        Predicate<Course> reviewScoreInfA95Predicate = course -> course.getReviewScore() > 95;
+        Predicate<Course> reviewScoreInfA95Predicate = course -> course.getReviewScore() < 95;
 
         Predicate<Course> reviewScoreSuppA90Predicate = course -> course.getReviewScore() > 90;
 
@@ -157,9 +157,9 @@ public class CustomClass {
 
 
         System.out.println(
-        courses.stream()
-                .takeWhile(course -> course.getReviewScore() >=95)
-                .collect(Collectors.toList()));
+                courses.stream()
+                        .takeWhile(course -> course.getReviewScore() >=95)
+                        .collect(Collectors.toList()));
         //[Spring.20000:98, Spring Boot.18000:95, API.22000:97, FullStack.25000:96]
 
 
@@ -168,6 +168,46 @@ public class CustomClass {
                         .dropWhile(course -> course.getReviewScore() >=95)
                         .collect(Collectors.toList()));
         //[AWS.14000:92, Azure.21000:99, Docker.21000:92, Kubernetes.20000:91]
+
+
+
+        //Retourne le dernier élément de la liste
+        System.out.println(
+                courses.stream()
+                        .max (comparingNumberOfStudentsAndReviewScore));
+//Optional[FullStack.25000:96]
+
+        //Retourne le premier élément de la liste
+        System.out.println(
+                courses.stream()
+                        .min (comparingNumberOfStudentsAndReviewScore));
+
+        //Optional[AWS.14000:92]
+
+
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreInfA90Predicate)
+                        .min (comparingNumberOfStudentsAndReviewScore)
+                        .orElse(new Course("Kubernetes", "Cloud", 91,20000)));
+                //Kubernetes.20000:91
+
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .findFirst());
+
+        //Optional[Spring.20000:98]
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreSuppA95Predicate)
+                        .findAny());
+
+        //Optional[Spring.20000:98]
+
 
 
     }
