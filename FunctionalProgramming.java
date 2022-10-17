@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -33,6 +34,12 @@ public class FunctionalProgramming {
 
         // Le cube de chaque éléments
         System.out.println(IntStream.iterate(2, e -> e * 2).limit(10).peek(System.out::println).sum());
+
+        // Pour une grande opération qui dépasse la range des ints, doubles 
+        System.out.println(IntStream.rangeClosed(1,50).mapToObj(BigInteger::valueOf).reduce(BigInteger.ONE, BigInteger::multiply));
+
+
+
 
 
 
