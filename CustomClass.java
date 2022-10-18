@@ -290,5 +290,19 @@ public class CustomClass {
 
 
 
+        
+        Predicate<Course> reviewScoreSuppA95Predicate2 
+                = createPredicateWithCutoffReviewScore(95);
+
+        Predicate<Course> reviewScoreInfA95Predicate2 = createPredicateWithCutoffReviewScore(90);
+
+
+
+
+
+    }
+
+    private static Predicate<Course> createPredicateWithCutoffReviewScore(int cutoffReviewScore) {
+        return course -> course.getReviewScore() > cutoffReviewScore;
     }
 }
